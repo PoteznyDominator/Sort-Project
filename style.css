@@ -4,6 +4,7 @@
     --day-bgcolor:#f3f3f3;
     --nav-bgcolor:white;
     --box-shadow:rgb(172, 172, 172);
+    --hover-color:#ab3dff;
 }
 
 body{
@@ -52,16 +53,15 @@ nav{
 }
 .sort-container{
     position: relative;
-    margin: 100px;
+    margin: 40px;
     text-align: left;
     padding: 15px;
     width: auto;
-    height: auto;
     background-color: white;
     border-radius: 10px;
     text-transform: uppercase;
     box-shadow: 0 0 10px var(--box-shadow);
-    transition: 0.5s all ease-in-out;
+    transition: transform 0.5s;
 }
 .sort-container:hover{
     transform: scale(1.1);
@@ -95,24 +95,19 @@ h1{
     align-items: center;
     gap: 10px;
 }
-.start, .random{
+.start, .random, .link{
     position: relative;
     float: left;
     overflow: hidden;
     font-size: 30px;
+    text-decoration: none;
+    color: black;
     background-color: transparent;
     outline: none;
     border: none;
     cursor: pointer;
-    transition: .5s all;
+    transition: color .5s;
 }
 .start:hover , .link:hover, .random:hover{
-    transform: scale(1.10);
-    color: #ab3dff
-}
-.link{
-    font-size: 30px;
-    color: black;
-    text-decoration: none;
-    transition: .5s;
+    color: var(--hover-color);
 }
