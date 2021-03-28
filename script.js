@@ -6,7 +6,24 @@ const sorts = [
     {
         id:2,
         title:"selection",
-    }
+    },
+    {
+        id:3,
+        title:"insertion",
+    },
+    {
+        id:4,
+        title:"heap",
+    },
+    {
+        id:5,
+        title:"merge",
+    },
+    {
+        id:6,
+        title:"quick",
+    },
+
 ]
 
 const timer = ms => new Promise(res => setTimeout(res, ms))
@@ -18,7 +35,7 @@ window.addEventListener("DOMContentLoaded", function(){
 
     const element = document.querySelectorAll("#bubble .element");
     const startBtn = document.querySelectorAll(".start");
-
+    //animating right function
     startBtn.forEach(function(btn){
         btn.addEventListener("click",function(){
             let id = this.parentNode.getAttribute("id");
@@ -30,7 +47,7 @@ window.addEventListener("DOMContentLoaded", function(){
                     value: "+=360",
                     duration:1000,
                 },
-                
+                color:"#ab3dff",
             });
             anime({
                 targets:"#"+id.replace("button",""),
@@ -40,7 +57,7 @@ window.addEventListener("DOMContentLoaded", function(){
             });
             btn.disabled = true;
             if(id === "bubblebutton"){
-                let time =  bubbleSort(element);
+                bubbleSort(element);
             }
         });
     })
@@ -57,11 +74,11 @@ let bubbleSort = async (element) => {
                 anime({
                     targets:tab[j],
                     translateY:100,
-                })
+                });
                 anime({
                     targets:tab[j+1],
                     translateY:100,
-                })
+                });
                 if (parseInt(tab[j].getElementsByTagName("p")[0].innerHTML)>parseInt(tab[j+1].getElementsByTagName("p")[0].innerHTML)) {
                     await timer(500);
                     anime({
@@ -84,13 +101,20 @@ let bubbleSort = async (element) => {
                 anime({
                     targets:tab[j],
                     translateY:0,
-                })
+                });
                 anime({
                     targets:tab[j+1],
                     translateY:0,
-                })
+                });
                 await timer(500);
+                console.log(len-i);
         }
+        await timer(100);
+        anime({
+            targets:tab[len-i-1],
+            borderColor:"#5cdb95",
+        });
+        await timer(500);
     }
     anime({
         targets:".sort-container",
@@ -98,13 +122,18 @@ let bubbleSort = async (element) => {
         easing: 'linear',
         duration:500,
     });
+    anime({
+        targets:"#bubblebutton .start",
+        rotate:{
+            value: "-=360",
+            duration:1000,
+        },
+        color:"#000",
+    });
     return tab;
 };
 
-
 const content = document.querySelector(".content");
-
-
 //Function to displaying array dynamically
 function displayContainers(elements,tab) {
     let dis = elements.map(function(item){
