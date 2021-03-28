@@ -25,114 +25,88 @@ const sorts = [
     },
 
 ]
-
-const timer = ms => new Promise(res => setTimeout(res, ms))
+import {bubbleSort} from "./javascripts/bubble.js";//bubblesort algorithm
 
 window.addEventListener("DOMContentLoaded", function(){
     let arr = Array.from({length: 8}, () => Math.floor(Math.random() * 10));
 
     displayContainers(sorts,arr);
-
-    const element = document.querySelectorAll("#bubble .element");
     const startBtn = document.querySelectorAll(".start");
+    const randomBtn = document.querySelectorAll(".random");
     //animating right function
+    
     startBtn.forEach(function(btn){
         btn.addEventListener("click",function(){
             let id = this.parentNode.getAttribute("id");
+            const element = document.querySelectorAll("#"+id.replace("button","")+ " .element");
+            let check = checking(btn);
+            if(check === false){
+                anime({
+                    targets:"#"+id+" .start",
+                    rotate:{
+                        value: "+=360",
+                        duration:1000,
+                    },
+                    color:"#2ECC40",
+                });
+                anime({
+                    targets:"#"+id.replace("button",""),
+                    height:"+=100",
+                    easing: 'linear',
+                    duration:500,
+                });
+            }
+            if(id === "bubblebutton"){
+                btn.disabled = true;
+                check = true;
+                bubbleSort(element,btn);
+            }
+            else{
+                alert("You need to randomize array.");
+            }
+            if(id === "selectionbutton"){}
             
-            console.log(btn.getAttribute("class"));
+        });
+    });
+    randomBtn.forEach(function(btn){
+        btn.addEventListener("click",function(){
+            checking(btn);
+            let id = this.parentNode.getAttribute("id");
+            let arr = document.querySelectorAll("#"+id.replace("button","")+" .element p");
+            const element = document.querySelectorAll("#"+id.replace("button","")+ " .element");
+            for(let i=0;i<element.length;i++){
+                arr[i].innerHTML = Math.floor(Math.random() * 10+1);
+                anime({
+                    targets:"#"+id.replace("button","")+ " .element",
+                    translateX:0,
+                });
+            }
             anime({
-                targets:"#"+id+" .start",
+                targets:"#"+id+" .random",
                 rotate:{
-                    value: "+=360",
+                    value: "+=360",//work on that, prevent getting too much around!!!
                     duration:1000,
                 },
-                color:"#ab3dff",
             });
             anime({
-                targets:"#"+id.replace("button",""),
-                height:180,
-                easing: 'linear',
-                duration:500,
+                targets:"#"+id.replace("button","")+ " .element",
+                borderColor:{
+                    value:"#000",
+                    duration:5000,
+                },
             });
-            btn.disabled = true;
-            if(id === "bubblebutton"){
-                bubbleSort(element);
-            }
         });
-    })
+    });
 });
 
-
-//alogrithm to show bubble sort
-let bubbleSort = async (element) => {
-    let tab = Array.from(element);
-    let len = tab.length;
-    await timer(500);
-    for (let i = 0; i < len; i++) {
-        for (let j = 0; j < len-1-i; j++) {
-                anime({
-                    targets:tab[j],
-                    translateY:100,
-                });
-                anime({
-                    targets:tab[j+1],
-                    translateY:100,
-                });
-                if (parseInt(tab[j].getElementsByTagName("p")[0].innerHTML)>parseInt(tab[j+1].getElementsByTagName("p")[0].innerHTML)) {
-                    await timer(500);
-                    anime({
-                        targets:tab[j],
-                        translateX: {
-                            value:'+=79',
-                        },
-                    })
-                    anime({
-                        targets:tab[j+1],
-                        translateX: {
-                            value:'-=79',
-                        },
-                    })
-                    let tmp = tab[j];
-                    tab[j] = tab[j+1];
-                    tab[j+1] = tmp;
-                }
-                await timer(500);
-                anime({
-                    targets:tab[j],
-                    translateY:0,
-                });
-                anime({
-                    targets:tab[j+1],
-                    translateY:0,
-                });
-                await timer(500);
-                console.log(len-i);
-        }
-        await timer(100);
-        anime({
-            targets:tab[len-i-1],
-            borderColor:"#5cdb95",
-        });
-        await timer(500);
+function checking(btn){
+    if(btn.getAttribute("class")==="start"){
+        return false;
     }
-    anime({
-        targets:".sort-container",
-        height: 160,
-        easing: 'linear',
-        duration:500,
-    });
-    anime({
-        targets:"#bubblebutton .start",
-        rotate:{
-            value: "-=360",
-            duration:1000,
-        },
-        color:"#000",
-    });
-    return tab;
-};
-
+    else if(btn.getAttribute("class")==="random"){
+        return false;
+    }
+}
 const content = document.querySelector(".content");
 //Function to displaying array dynamically
 function displayContainers(elements,tab) {
@@ -147,7 +121,7 @@ function displayContainers(elements,tab) {
                 <button class="random">
                     <i class="fas fa-random"></i>
                 </button>
-                <a href="index.html" class="link">
+                <a href='#${item.title}'class="link">
                     <i class="fas fa-ellipsis-v"></i>
                 </a>
             </div>
@@ -162,15 +136,7 @@ function displayContainers(elements,tab) {
             <div class="element">
                 <p>${(tab[2]*item.id)%10+1}</p>
             </div>
-            <div class="element">
-                <p>${(tab[3]*item.id)%10+1}</p>
-            </div>
-            <div class="element">
-                <p>${(tab[4]*item.id)%10+1}</p>
-            </div>
-            <div class="element">
-                <p>${(tab[5]*item.id)%10+1}</p>
-            </div>
+            
         </div>
     </div>`
     });
