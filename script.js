@@ -35,12 +35,30 @@ window.addEventListener("DOMContentLoaded", function(){
     const randomBtn = document.querySelectorAll(".random");
     //animating right function
     
+    let check = new Array(sorts.length)
+    check.fill(false);
     startBtn.forEach(function(btn){
         btn.addEventListener("click",function(){
             let id = this.parentNode.getAttribute("id");
             const element = document.querySelectorAll("#"+id.replace("button","")+ " .element");
-            let check = checking(btn);
-            if(check === false){
+            const rnd = document.querySelector("#"+id + " .random");
+            
+            
+            
+            if(id === "bubblebutton" && check[0] === false){
+                btn.disabled = true;
+                rnd.disabled = true;
+                check[0] = true;
+                animations();
+                bubbleSort(element,btn,rnd);
+            }
+            else if(id === "selectionbutton" && check[1] === false){}
+            else{
+                alert("You need to randomize array.");
+            }
+            
+            
+            function animations() {
                 anime({
                     targets:"#"+id+" .start",
                     rotate:{
@@ -56,24 +74,19 @@ window.addEventListener("DOMContentLoaded", function(){
                     duration:500,
                 });
             }
-            if(id === "bubblebutton"){
-                btn.disabled = true;
-                check = true;
-                bubbleSort(element,btn);
-            }
-            else{
-                alert("You need to randomize array.");
-            }
-            if(id === "selectionbutton"){}
-            
         });
     });
     randomBtn.forEach(function(btn){
         btn.addEventListener("click",function(){
-            checking(btn);
             let id = this.parentNode.getAttribute("id");
             let arr = document.querySelectorAll("#"+id.replace("button","")+" .element p");
             const element = document.querySelectorAll("#"+id.replace("button","")+ " .element");
+
+            switch(id){
+                case "bubblebutton":
+                    check[0] = false;
+            }
+
             for(let i=0;i<element.length;i++){
                 arr[i].innerHTML = Math.floor(Math.random() * 10+1);
                 anime({
@@ -84,15 +97,16 @@ window.addEventListener("DOMContentLoaded", function(){
             anime({
                 targets:"#"+id+" .random",
                 rotate:{
-                    value: "+=360",//work on that, prevent getting too much around!!!
+                    value: [0,360],//work on that, prevent getting too much around!!!
                     duration:1000,
                 },
+                
             });
             anime({
                 targets:"#"+id.replace("button","")+ " .element",
                 borderColor:{
                     value:"#000",
-                    duration:5000,
+                    duration:1000,
                 },
             });
         });
@@ -136,7 +150,18 @@ function displayContainers(elements,tab) {
             <div class="element">
                 <p>${(tab[2]*item.id)%10+1}</p>
             </div>
-            
+            <div class="element">
+                <p>${(tab[3]*item.id)%10+1}</p>
+            </div>
+            <div class="element">
+                <p>${(tab[4]*item.id)%10+1}</p>
+            </div>
+            <div class="element">
+                <p>${(tab[5]*item.id)%10+1}</p>
+            </div>
+            <div class="element">
+                <p>${(tab[6]*item.id)%10+1}</p>
+            </div>
         </div>
     </div>`
     });

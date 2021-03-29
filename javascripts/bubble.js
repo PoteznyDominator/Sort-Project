@@ -1,6 +1,6 @@
 const timer = ms => new Promise(res => setTimeout(res, ms));
 
-export let bubbleSort = async (element,btn) => {
+export let bubbleSort = async (element,btn,rnd) => {
     let tab = Array.from(element);
     let len = tab.length;
     await timer(500);
@@ -65,5 +65,6 @@ export let bubbleSort = async (element,btn) => {
         color:"#000",
     });
     btn.disabled = false;
+    rnd.disabled = false;
     return true;
 };

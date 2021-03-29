@@ -4,7 +4,8 @@
     --day-bgcolor:#f3f3f3;
     --nav-bgcolor:white;
     --box-shadow:rgb(172, 172, 172);
-    --hover-color:#2ECC40;
+    --start-color:#2ECC40;
+    --random-color:#0074D9;
 }
 
 body{
@@ -108,6 +109,9 @@ h1{
     cursor: pointer;
     transition: color .5s;
 }
-.start:hover , .link:hover, .random:hover{
-    color: var(--hover-color);
+.start:hover{
+    color: var(--start-color);
+}
+.random:hover{
+    color: var(--random-color);
 }
