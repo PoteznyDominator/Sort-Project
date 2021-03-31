@@ -63,7 +63,7 @@ window.addEventListener("DOMContentLoaded", function(){
                         value: "+=360",
                         duration:1000,
                     },
-                    color:"#C154C1",
+                    color:"#FF8AFF",
                 });
                 anime({
                     targets:"#"+id.replace("button",""),
@@ -113,6 +113,15 @@ window.addEventListener("DOMContentLoaded", function(){
     });
 });
 
+
+//to create a great fade IN&OUT button
+const navbar = document.querySelector(".nav-container");
+const topBtn = document.querySelector(".topLink");
+window.addEventListener("scroll",function(){
+    const navHeight = navbar.getBoundingClientRect().height;
+    topBtn.classList.toggle("active",window.scrollY>navHeight);
+});
+
 const content = document.querySelector(".content");
 //Function to displaying array dynamically
 function displayContainers(elements,tab) {
@@ -160,4 +169,3 @@ function displayContainers(elements,tab) {
     dis = dis.join('');
     content.innerHTML = dis;
 }
-

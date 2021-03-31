@@ -3,11 +3,12 @@
 :root{
     --day-bgcolor:#f3f3f3;
     --nav-bgcolor:white;
-    --nigth-bgcolor:#15202B;
-    --night-sectionColor:#192734;
+    --nigth-bgcolor:#18191A;
+    --night-sectionColor:#3a3b3c;
+    --night-secondColor:#242526;
     --night-textColor:#e4e6eb;
     --box-shadow:rgb(172, 172, 172);
-    --hover-color:#C154C1;
+    --hover-color:#FF8AFF;
     --start-color:#2ECC40;
     --random-color:#1e90ff;
     scroll-behavior: smooth;
@@ -63,13 +64,24 @@ nav{
     color: var(--night-textColor);
     font-size: 30px;
     font-weight: 300;
+}
+.a-link::after{
+    position: absolute;
+    content: '';
+    background-color: transparent;
+    width: 90%;
+    height: 5px;
+    border-radius: 10px;
+    left: 5%;
+    top: 120%;
     transition: .5s;
+}
+.a-link:hover::after{
+    background-color: var(--hover-color);
+    transform: translateY(-120%);
 }
 
 header{
-    background-image: url("./icons/backgound8.png");
-    background-repeat: no-repeat;
-    background-size: cover;
     display: table-cell;
     vertical-align: middle;
     width: 100vw;
@@ -79,20 +91,24 @@ header{
 }
 .heading{
     color: var(--hover-color);
-    font-size: 70px;
+    font-size: 76px;
     font-weight: 300;
 }
 .underText{
     color: var(--night-textColor);
     font-size: 24px;
     font-weight: 300;
-    margin-top: -50px;
+    margin-top: -60px;
 }
 #sorts{
+    padding-top: 100px;
     text-align: center;
     color: var(--hover-color);
     font-size: 60px;
     font-weight: 300;
+}
+main{
+    background-color: var(--night-secondColor);
 }
 .content{
     width: 100vw;
@@ -164,4 +180,55 @@ h1{
 }
 .start:hover, .random:hover, .link:hover{
     color: var(--hover-color);
+}
+#about{
+    text-align: center;
+    display: grid;
+    place-items: center;
+}
+#bigText{
+    font-size: 60px;
+    font-weight: 300;
+    color: var(--hover-color);
+}
+#smallText{
+    color: var(--night-textColor);
+    margin-top: -60px;
+    font-size: 24px;
+    font-weight: 300;
+    width: 55vw;
+}
+
+.topLink{
+    position: fixed;
+    top:80vh;
+    left: 90vw;
+    width: 80px;
+    height: 80px;
+    background-color: #FF7D7D;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 40px;
+    animation: pulse 2s infinite;
+    text-decoration: none;
+    color: black;
+    visibility: hidden;
+    opacity: 0;
+    transition: 1s;
+}
+.topLink.active{
+    visibility: visible;
+    opacity: 1;
+}
+@keyframes pulse{
+    0%{
+        transform: scale(.80);
+    }
+    50%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(.80);
+    }
 }

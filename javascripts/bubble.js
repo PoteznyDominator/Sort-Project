@@ -46,11 +46,11 @@ export let bubbleSort = async (element,btn,rnd) => {
         await timer(100);
         anime({
             targets:tab[len-i-1],
-            borderColor:"#C154C1",
+            borderColor:"#FF8AFF",
         });
         anime({
             targets:tab[len-i-1].getElementsByTagName("p")[0],
-            color:"#C154C1",
+            color:"#FF8AFF",
         });
         await timer(500);
     }
