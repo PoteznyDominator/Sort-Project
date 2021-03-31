@@ -101,7 +101,7 @@ header{
     margin-top: -60px;
 }
 #sorts{
-    padding-top: 100px;
+    padding-top: 60px;
     text-align: center;
     color: var(--hover-color);
     font-size: 60px;
@@ -187,6 +187,7 @@ h1{
     place-items: center;
 }
 #bigText{
+    text-align: center;
     font-size: 60px;
     font-weight: 300;
     color: var(--hover-color);
@@ -198,11 +199,50 @@ h1{
     font-weight: 300;
     width: 55vw;
 }
+#contact{
+    display: grid;
+    place-items: center;
+    padding-bottom: 100px;
+}
+.social{
+    display: inline-flex;
+    justify-content: space-between;
+    width: 70vw;
+}
+.media{
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--night-textColor);
+}
+.social-Links li{
+    list-style: none;
+    margin-left: -40px;
+    margin-top: 20px;
+}
+.social-Links li a{
+    text-decoration: none;
+    color: var(--night-textColor);
+}
+.fab{
+    vertical-align: middle;
+    font-size: 50px;
+    margin-right: 20px;
+}
+.email{
+    background-color: var(--night-sectionColor);
+    width: 40rem;
+    height: auto;
+    float: right;
+}
 
+footer{
+    height: 300px;
+    background-color: black;
+}
 .topLink{
     position: fixed;
-    top:80vh;
-    left: 90vw;
+    bottom:40px;
+    right: 40px;
     width: 80px;
     height: 80px;
     background-color: #FF7D7D;

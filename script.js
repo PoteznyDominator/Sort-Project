@@ -89,6 +89,8 @@ window.addEventListener("DOMContentLoaded", function(){
                 anime({
                     targets:"#"+id.replace("button","")+ " .element",
                     translateX:0,
+                    duration:1000,
+                    easing:"easeOutCubic"
                 });
             }
             anime({
