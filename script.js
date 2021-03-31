@@ -43,8 +43,6 @@ window.addEventListener("DOMContentLoaded", function(){
             const element = document.querySelectorAll("#"+id.replace("button","")+ " .element");
             const rnd = document.querySelector("#"+id + " .random");
             
-            
-            
             if(id === "bubblebutton" && check[0] === false){
                 btn.disabled = true;
                 rnd.disabled = true;
@@ -65,7 +63,7 @@ window.addEventListener("DOMContentLoaded", function(){
                         value: "+=360",
                         duration:1000,
                     },
-                    color:"#2ECC40",
+                    color:"#C154C1",
                 });
                 anime({
                     targets:"#"+id.replace("button",""),
@@ -81,12 +79,11 @@ window.addEventListener("DOMContentLoaded", function(){
             let id = this.parentNode.getAttribute("id");
             let arr = document.querySelectorAll("#"+id.replace("button","")+" .element p");
             const element = document.querySelectorAll("#"+id.replace("button","")+ " .element");
-
+            
             switch(id){
                 case "bubblebutton":
                     check[0] = false;
             }
-
             for(let i=0;i<element.length;i++){
                 arr[i].innerHTML = Math.floor(Math.random() * 10+1);
                 anime({
@@ -103,24 +100,19 @@ window.addEventListener("DOMContentLoaded", function(){
                 
             });
             anime({
-                targets:"#"+id.replace("button","")+ " .element",
+                targets:element,
                 borderColor:{
-                    value:"#000",
-                    duration:1000,
+                    value:"#e4e6eb",
                 },
+            });
+            anime({
+                targets:arr,
+                color:"#e4e6eb",
             });
         });
     });
 });
 
-function checking(btn){
-    if(btn.getAttribute("class")==="start"){
-        return false;
-    }
-    else if(btn.getAttribute("class")==="random"){
-        return false;
-    }
-}
 const content = document.querySelector(".content");
 //Function to displaying array dynamically
 function displayContainers(elements,tab) {
@@ -136,7 +128,7 @@ function displayContainers(elements,tab) {
                     <i class="fas fa-random"></i>
                 </button>
                 <a href='#${item.title}'class="link">
-                    <i class="fas fa-ellipsis-v"></i>
+                    <i class="fas fa-info-circle"></i>
                 </a>
             </div>
         </div>
@@ -165,6 +157,7 @@ function displayContainers(elements,tab) {
         </div>
     </div>`
     });
+    dis = dis.join('');
     content.innerHTML = dis;
 }
 

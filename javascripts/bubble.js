@@ -46,7 +46,11 @@ export let bubbleSort = async (element,btn,rnd) => {
         await timer(100);
         anime({
             targets:tab[len-i-1],
-            borderColor:"#2ECC40",
+            borderColor:"#C154C1",
+        });
+        anime({
+            targets:tab[len-i-1].getElementsByTagName("p")[0],
+            color:"#C154C1",
         });
         await timer(500);
     }
@@ -62,7 +66,7 @@ export let bubbleSort = async (element,btn,rnd) => {
             value: "-=360",
             duration:1000,
         },
-        color:"#000",
+        color:"#e4e6eb",
     });
     btn.disabled = false;
     rnd.disabled = false;
