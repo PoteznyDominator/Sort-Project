@@ -1,6 +1,6 @@
 const timer = ms => new Promise(res => setTimeout(res, ms));
 
-export let bubbleSort = async (element,btn,rnd) => {
+export let bubbleSort = async (element,btn,rnd,color) => {
     let tab = Array.from(element);
     let len = tab.length;
     await timer(500);
@@ -46,11 +46,11 @@ export let bubbleSort = async (element,btn,rnd) => {
         await timer(100);
         anime({
             targets:tab[len-i-1],
-            borderColor:"#FF8AFF",
+            borderColor:color,
         });
         anime({
             targets:tab[len-i-1].getElementsByTagName("p")[0],
-            color:"#FF8AFF",
+            color:color,
         });
         await timer(500);
     }
@@ -66,9 +66,8 @@ export let bubbleSort = async (element,btn,rnd) => {
             value: "-=360",
             duration:1000,
         },
-        color:"#e4e6eb",
     });
-    btn.disabled = false;
+    element[1].closest(".sort-container").classList.remove("noHover");
     rnd.disabled = false;
     return true;
 };

@@ -26,10 +26,10 @@ const sorts = [
 
 ]
 import {bubbleSort} from "./javascripts/bubble.js";//bubblesort algorithm
-
+import {selectionSort} from "./javascripts/selection.js";
 window.addEventListener("DOMContentLoaded", function(){
     let arr = Array.from({length: 8}, () => Math.floor(Math.random() * 10));
-
+    let color = "#FF8AFF"
     const date = document.querySelector(".date");
     date.innerHTML = new Date().getFullYear();
 
@@ -47,26 +47,32 @@ window.addEventListener("DOMContentLoaded", function(){
             const rnd = document.querySelector("#"+id + " .random");
             
             if(id === "bubblebutton" && check[0] === false){
-                btn.disabled = true;
-                rnd.disabled = true;
-                check[0] = true;
-                animations();
-                bubbleSort(element,btn,rnd);
+                allThings(0);
+                bubbleSort(element,btn,rnd,color);
             }
-            else if(id === "selectionbutton" && check[1] === false){}
+            else if(id === "selectionbutton" && check[1] === false){
+                allThings(1);
+                selectionSort(element,btn,rnd,color);
+                
+            }
+            else if(id === "insertionbutton" && check[2] === false){
+
+            }
             else{
                 alert("You need to randomize array.");
             }
             
-            
-            function animations() {
+            function allThings(n) {
+                rnd.disabled = true;
+                let container = document.querySelectorAll(".sort-container");
+                container[n].classList.toggle("noHover");
+                check[n] = true;
                 anime({
                     targets:"#"+id+" .start",
                     rotate:{
                         value: "+=360",
                         duration:1000,
                     },
-                    color:"#FF8AFF",
                 });
                 anime({
                     targets:"#"+id.replace("button",""),
@@ -86,6 +92,10 @@ window.addEventListener("DOMContentLoaded", function(){
             switch(id){
                 case "bubblebutton":
                     check[0] = false;
+                case "selectionbutton":
+                    check[1] = false;
+                case "insertionbutton":
+                    check[2] = false;
             }
             for(let i=0;i<element.length;i++){
                 arr[i].innerHTML = Math.floor(Math.random() * 10+1);

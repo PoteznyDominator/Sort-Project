@@ -117,6 +117,9 @@ main{
     align-items: center;
     flex-direction: column;
 }
+.noHover{
+    pointer-events: none;
+}
 .sort-container{
     margin: 40px;
     text-align: left;
@@ -286,7 +289,7 @@ h1{
 }
 footer{
     height: 200px;
-    background-color: var(--night-sectionColor);
+    background-color: var(--night-secondColor);
     display: grid;
     place-items: center;
     color: var(--night-textColor);
