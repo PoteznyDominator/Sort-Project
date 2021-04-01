@@ -9,6 +9,7 @@
     --night-textColor:#e4e6eb;
     --box-shadow:rgb(172, 172, 172);
     --hover-color:#FF8AFF;
+    --second-color:#FF7D7D;
     --start-color:#2ECC40;
     --random-color:#1e90ff;
     scroll-behavior: smooth;
@@ -200,6 +201,7 @@ h1{
     width: 55vw;
 }
 #contact{
+    background-color: var(--nigth-bgcolor);
     display: grid;
     place-items: center;
     padding-bottom: 100px;
@@ -229,15 +231,69 @@ h1{
     margin-right: 20px;
 }
 .email{
-    background-color: var(--night-sectionColor);
+    background-color: var(--night-secondColor);
     width: 40rem;
     height: auto;
-    float: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 5px;
 }
-
+#email-name{
+    background-color: var(--night-sectionColor);
+    color: var(--night-textColor);
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 18px;
+    padding: 5px;
+    border-radius: 5px;
+}
+#message{
+    margin-top: 5%;
+    height: 100%;
+    width: 100%;
+    background-color: var(--night-sectionColor);
+    outline: none;
+    border: none;
+    resize: none;
+    font-size: 18px;
+    font-weight: 300;
+    color:  var(--night-textColor);
+    padding: 5px;
+    border-radius: 5px;
+}
+#send{
+    width: 80px;
+    height: 40px;
+    margin-top: 10px;
+    background-color: var(--second-color);
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 20px;
+    outline: none;
+    color:var(--nigth-bgcolor);
+    backface-visibility: hidden;
+    transition: all .5s;
+    cursor: pointer;
+}
+#send:hover{
+    transform: scale(1.05);
+    background-color: #E86675;
+}
 footer{
-    height: 300px;
-    background-color: black;
+    height: 200px;
+    background-color: var(--night-sectionColor);
+    display: grid;
+    place-items: center;
+    color: var(--night-textColor);
+}
+#rights{
+    margin-top: -20px;
+    text-align: center;
 }
 .topLink{
     position: fixed;
@@ -245,7 +301,7 @@ footer{
     right: 40px;
     width: 80px;
     height: 80px;
-    background-color: #FF7D7D;
+    background-color: var(--second-color);
     border-radius: 50%;
     display: grid;
     place-items: center;

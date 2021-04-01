@@ -30,11 +30,14 @@ import {bubbleSort} from "./javascripts/bubble.js";//bubblesort algorithm
 window.addEventListener("DOMContentLoaded", function(){
     let arr = Array.from({length: 8}, () => Math.floor(Math.random() * 10));
 
+    const date = document.querySelector(".date");
+    date.innerHTML = new Date().getFullYear();
+
     displayContainers(sorts,arr);
     const startBtn = document.querySelectorAll(".start");
     const randomBtn = document.querySelectorAll(".random");
+
     //animating right function
-    
     let check = new Array(sorts.length)
     check.fill(false);
     startBtn.forEach(function(btn){
