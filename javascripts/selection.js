@@ -83,4 +83,4 @@ export let selectionSort = async (element,btn,rnd,color) => {
     element[1].closest(".sort-container").classList.remove("noHover");
     rnd.disabled = false;
     return true;
-}
+};

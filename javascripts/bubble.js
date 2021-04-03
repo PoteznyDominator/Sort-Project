@@ -67,7 +67,7 @@ export let bubbleSort = async (element,btn,rnd,color) => {
             duration:1000,
         },
     });
-    element[1].closest(".sort-container").classList.remove("noHover");
+    element[0].closest(".sort-container").classList.remove("noHover");
     rnd.disabled = false;
     return true;
 };

@@ -27,8 +27,9 @@ const sorts = [
 ]
 import {bubbleSort} from "./javascripts/bubble.js";//bubblesort algorithm
 import {selectionSort} from "./javascripts/selection.js";
+import {insertionSort} from "./javascripts/insertion.js";
 window.addEventListener("DOMContentLoaded", function(){
-    let arr = Array.from({length: 8}, () => Math.floor(Math.random() * 10));
+    let arr = Array.from({length: 8}, () => Math.floor(Math.random() * 9));
     let color = "#FF8AFF"
     const date = document.querySelector(".date");
     date.innerHTML = new Date().getFullYear();
@@ -53,11 +54,12 @@ window.addEventListener("DOMContentLoaded", function(){
             else if(id === "selectionbutton" && check[1] === false){
                 allThings(1);
                 selectionSort(element,btn,rnd,color);
-                
             }
             else if(id === "insertionbutton" && check[2] === false){
-
+                allThings(2);
+                insertionSort(element,btn,rnd,color);
             }
+
             else{
                 alert("You need to randomize array.");
             }
@@ -71,12 +73,12 @@ window.addEventListener("DOMContentLoaded", function(){
                     targets:"#"+id+" .start",
                     rotate:{
                         value: "+=360",
-                        duration:1000,
+                        duration:900,
                     },
                 });
                 anime({
                     targets:"#"+id.replace("button",""),
-                    height:"+=100",
+                    height:"+=90",
                     easing: 'linear',
                     duration:500,
                 });
@@ -88,7 +90,7 @@ window.addEventListener("DOMContentLoaded", function(){
             let id = this.parentNode.getAttribute("id");
             let arr = document.querySelectorAll("#"+id.replace("button","")+" .element p");
             const element = document.querySelectorAll("#"+id.replace("button","")+ " .element");
-            
+            console.log(id)
             switch(id){
                 case "bubblebutton":
                     check[0] = false;
@@ -98,11 +100,11 @@ window.addEventListener("DOMContentLoaded", function(){
                     check[2] = false;
             }
             for(let i=0;i<element.length;i++){
-                arr[i].innerHTML = Math.floor(Math.random() * 10+1);
+                arr[i].innerHTML = Math.floor(Math.random() * 9+1);
                 anime({
                     targets:"#"+id.replace("button","")+ " .element",
                     translateX:0,
-                    duration:1000,
+                    duration:900,
                     easing:"easeOutCubic"
                 });
             }
@@ -110,7 +112,7 @@ window.addEventListener("DOMContentLoaded", function(){
                 targets:"#"+id+" .random",
                 rotate:{
                     value: [0,360],//work on that, prevent getting too much around!!!
-                    duration:1000,
+                    duration:900,
                 },
                 
             });
@@ -158,25 +160,25 @@ function displayContainers(elements,tab) {
         </div>
         <div class="sort-array" id=${item.title}>
             <div class="element">
-                <p>${(tab[0]*item.id)%10+1}</p>
+                <p>${(tab[0]*item.id)%9+1}</p>
             </div>
             <div class="element">
-                <p>${(tab[1]*item.id)%10+1}</p>
+                <p>${(tab[1]*item.id)%9+1}</p>
             </div>
             <div class="element">
-                <p>${(tab[2]*item.id)%10+1}</p>
+                <p>${(tab[2]*item.id)%9+1}</p>
             </div>
             <div class="element">
-                <p>${(tab[3]*item.id)%10+1}</p>
+                <p>${(tab[3]*item.id)%9+1}</p>
             </div>
             <div class="element">
-                <p>${(tab[4]*item.id)%10+1}</p>
+                <p>${(tab[4]*item.id)%9+1}</p>
             </div>
             <div class="element">
-                <p>${(tab[5]*item.id)%10+1}</p>
+                <p>${(tab[5]*item.id)%9+1}</p>
             </div>
             <div class="element">
-                <p>${(tab[6]*item.id)%10+1}</p>
+                <p>${(tab[6]*item.id)%9+1}</p>
             </div>
         </div>
     </div>`
