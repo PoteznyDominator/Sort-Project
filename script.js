@@ -13,28 +13,29 @@ const sorts = [
     },
     {
         id:4,
-        title:"heap",
-    },
-    {
-        id:5,
         title:"merge",
     },
     {
-        id:6,
+        id:5,
         title:"quick",
+    },
+    {
+        id:6,
+        title:"heap",
     },
 
 ]
-import {bubbleSort} from "./javascripts/bubble.js";//bubblesort algorithm
+//importing sorts alghoritms
+import {bubbleSort} from "./javascripts/bubble.js";
 import {selectionSort} from "./javascripts/selection.js";
 import {insertionSort} from "./javascripts/insertion.js";
+import {mergeSort} from "./javascripts/merge.js";
 window.addEventListener("DOMContentLoaded", function(){
-    let arr = Array.from({length: 8}, () => Math.floor(Math.random() * 9));
     let color = "#FF8AFF"
     const date = document.querySelector(".date");
     date.innerHTML = new Date().getFullYear();
 
-    displayContainers(sorts,arr);
+    displayContainers(sorts);
     const startBtn = document.querySelectorAll(".start");
     const randomBtn = document.querySelectorAll(".random");
 
@@ -59,7 +60,10 @@ window.addEventListener("DOMContentLoaded", function(){
                 allThings(2);
                 insertionSort(element,btn,rnd,color);
             }
-
+            else if(id === "mergebutton" && check[3] === false){
+                allThings(3);
+                mergeSort(element,btn,rnd,color);
+            }
             else{
                 alert("You need to randomize array.");
             }
@@ -78,7 +82,7 @@ window.addEventListener("DOMContentLoaded", function(){
                 });
                 anime({
                     targets:"#"+id.replace("button",""),
-                    height:"+=90",
+                    height:"+=100",
                     easing: 'linear',
                     duration:500,
                 });
@@ -90,7 +94,6 @@ window.addEventListener("DOMContentLoaded", function(){
             let id = this.parentNode.getAttribute("id");
             let arr = document.querySelectorAll("#"+id.replace("button","")+" .element p");
             const element = document.querySelectorAll("#"+id.replace("button","")+ " .element");
-            console.log(id)
             switch(id){
                 case "bubblebutton":
                     check[0] = false;
@@ -98,6 +101,8 @@ window.addEventListener("DOMContentLoaded", function(){
                     check[1] = false;
                 case "insertionbutton":
                     check[2] = false;
+                case "mergebutton":
+                    check[3] = false;
             }
             for(let i=0;i<element.length;i++){
                 arr[i].innerHTML = Math.floor(Math.random() * 9+1);
@@ -139,9 +144,14 @@ window.addEventListener("scroll",function(){
     topBtn.classList.toggle("active",window.scrollY>navHeight);
 });
 
+function shuffle() {
+    let rnd = Math.floor(Math.random()*9+1);
+    return rnd;
+}
+
 const content = document.querySelector(".content");
 //Function to displaying array dynamically
-function displayContainers(elements,tab) {
+function displayContainers(elements) {
     let dis = elements.map(function(item){
         return `<div class="sort-container">
         <div class="top">
@@ -160,26 +170,27 @@ function displayContainers(elements,tab) {
         </div>
         <div class="sort-array" id=${item.title}>
             <div class="element">
-                <p>${(tab[0]*item.id)%9+1}</p>
+                <p>${shuffle()}</p>
             </div>
             <div class="element">
-                <p>${(tab[1]*item.id)%9+1}</p>
+                <p>${shuffle()}</p>
             </div>
             <div class="element">
-                <p>${(tab[2]*item.id)%9+1}</p>
+                <p>${shuffle()}</p>
             </div>
             <div class="element">
-                <p>${(tab[3]*item.id)%9+1}</p>
+                <p>${shuffle()}</p>
             </div>
             <div class="element">
-                <p>${(tab[4]*item.id)%9+1}</p>
+                <p>${shuffle()}</p>
             </div>
             <div class="element">
-                <p>${(tab[5]*item.id)%9+1}</p>
+                <p>${shuffle()}</p>
             </div>
             <div class="element">
-                <p>${(tab[6]*item.id)%9+1}</p>
+                <p>${shuffle()}</p>
             </div>
+            
         </div>
     </div>`
     });
